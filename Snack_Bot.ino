@@ -6,18 +6,18 @@ Servo leftServo;
 Servo centerServo;
 Servo rightServo;
 
-const int leftSensorTrig = 13;
-const int leftSensorEcho = 12;
-const int rightSensorTrig = 11;
-const int rightSensorEcho = 10;
+const int leftSensorTrig = 6;
+const int leftSensorEcho = 5;
+const int rightSensorTrig = 4;
+const int rightSensorEcho = 3;
 
 int leftDistance;
 int rightDistance;
 
 void setup() {
   // put your setup code here, to run once:
-  leftServo.attach(6);
-  rightServo.attach(7);
+  leftServo.attach(1);
+  rightServo.attach(2);
   pinMode(leftSensorTrig, OUTPUT); 
   pinMode(leftSensorEcho, INPUT);
   pinMode(rightSensorTrig, OUTPUT); 
@@ -29,12 +29,12 @@ void loop() {
      leftDistance = calculateDistanceLeft();
      rightDistance = calculateDistanceRight();
      
-  if(leftDistance < 20){
+  if(leftDistance < 3){
     servoMovement(85, 160, leftServo); 
     delay(1000);
   }
 
-  if(rightDistance < 20){
+  if(rightDistance < 3){
     servoMovement(70, 200, rightServo); 
     delay(1000);
   }  
