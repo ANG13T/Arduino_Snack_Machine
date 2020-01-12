@@ -1,4 +1,4 @@
-#include <Keypad.h>
+
 #include <Servo.h>
 
 int angle;
@@ -6,22 +6,6 @@ int angle;
 Servo leftServo;
 Servo centerServo;
 Servo rightServo;
-
-//Keypad
-const byte ROWS = 4;
-const byte COLS = 3;
-
-char keys[ROWS][COLS] = {
-  {'1', '2', '3'},
-  {'4', '5', '6'},
-  {'7', '8', '9'},
-  {'*', '0', '#'}
-};
-
-byte rowPins[ROWS] = {13,12,11,10};
-byte colPins[COLS] = {9,8,7};
-
-Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
 //Sensor
 const int leftSensorTrig = 6;
@@ -33,7 +17,6 @@ int leftDistance;
 int rightDistance;
 
 void setup() {
-  Serial.begin(9600);
   // put your setup code here, to run once:
   leftServo.attach(1);
   rightServo.attach(2);
@@ -44,26 +27,19 @@ void setup() {
 }
 
 void loop() {
-
-   char key = keypad.getKey(); 
-  if (key == '1'){
-    Serial.println(key);
-  } 
-    
-  
-   //Left Servo Code:
      leftDistance = calculateDistanceLeft();
      rightDistance = calculateDistanceRight();
      
-  if(leftDistance < 3){
-    servoMovement(85, 160, leftServo); 
-    delay(1000);
-  }
-
-  if(rightDistance < 3){
-    servoMovement(70, 200, rightServo); 
-    delay(1000);
-  }  
+    if(leftDistance < 3){
+      servoMovement(85, 160, leftServo); 
+      delay(1000);
+    }
+  
+    if(rightDistance < 3){
+      servoMovement(70, 200, rightServo); 
+      delay(1000);
+    }  
+  
 }
 
 //Left Sensor
